@@ -5,4 +5,3 @@ out/
 .vscode/
 *.vsix
 .env
-*.md
