@@ -1,0 +1,8 @@
+node_modules/
+dist/
+out/
+.venv/
+.vscode/
+*.vsix
+.env
+*.md

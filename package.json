@@ -1,0 +1,102 @@
+{
+  "name": "claudeXnemo",
+  "displayName": "claudeXnemo",
+  "description": "Start/stop your local litellm proxy (claudeXnemo) from VS Code with a red/yellow/green status dot — clickable toggle.",
+  "version": "0.1.0",
+  "publisher": "abhishek",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claudeXnemo.start",
+        "title": "Start claudeXnemo (litellm)"
+      },
+      {
+        "command": "claudeXnemo.stop",
+        "title": "Stop claudeXnemo (litellm)"
+      },
+      {
+        "command": "claudeXnemo.restart",
+        "title": "Restart claudeXnemo (litellm)"
+      },
+      {
+        "command": "claudeXnemo.showStatus",
+        "title": "Show claudeXnemo status"
+      },
+      {
+        "command": "claudeXnemo.toggle",
+        "title": "Toggle claudeXnemo (start/stop)"
+      }
+    ],
+    "configuration": {
+      "title": "claudeXnemo",
+      "properties": {
+        "claudeXnemo.litellmPath": {
+          "type": "string",
+          "default": "${env:APPDATA}\\Python\\Python314\\Scripts\\litellm.exe",
+          "description": "Path to litellm.exe. ${env:APPDATA} is resolved automatically."
+        },
+        "claudeXnemo.configPath": {
+          "type": "string",
+          "default": "${workspaceFolder}\\litellm_config.yaml",
+          "description": "Path to the litellm config yaml (defaults to the project's litellm_config.yaml)."
+        },
+        "claudeXnemo.port": {
+          "type": "number",
+          "default": 4000,
+          "description": "Port the litellm proxy listens on."
+        },
+        "claudeXnemo.apiKeyEnvVar": {
+          "type": "string",
+          "default": "NVIDIA_API_KEY",
+          "description": "Environment variable name for the API key passed to litellm."
+        },
+        "claudeXnemo.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Stored API key. Falls back to the env var, then the project .env file if empty."
+        },
+        "claudeXnemo.envFilePath": {
+          "type": "string",
+          "default": "${workspaceFolder}\\.env",
+          "description": "Path to a .env file used as a fallback for the API key."
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "claudeXnemo.start"
+        },
+        {
+          "command": "claudeXnemo.stop"
+        },
+        {
+          "command": "claudeXnemo.restart"
+        },
+        {
+          "command": "claudeXnemo.showStatus"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
